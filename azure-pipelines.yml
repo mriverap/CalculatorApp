@@ -33,10 +33,24 @@ steps:
     command: test
     projects: |
      **/*Tests.csproj
-    arguments: '--logger trx --results-directory $(Build.ArtifactStagingDirectory) -v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
+    arguments: '-v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
     
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Agent.TempDirectory)'
     ArtifactName: 'drop' 
     publishLocation: 'Container'
+    
+ - script: |
+   cd ..
+   dir *.* /s
+  displayName: 'Dir workspace'
+  continueOnError: true
+  condition: succeededOrFailed()
+
+ - script: |
+   cd ..
+   set
+  displayName: 'Environment variables'
+  continueOnError: true
+  condition: succeededOrFailed()
