@@ -28,11 +28,15 @@ steps:
     configuration: '$(buildConfiguration)'
     
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
+  displayName: 'Run Tests'
   inputs:
     command: test
     projects: |
      **/*Tests.csproj
     arguments: '--logger trx -v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
     
-
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
