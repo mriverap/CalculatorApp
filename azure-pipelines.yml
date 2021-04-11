@@ -41,16 +41,10 @@ steps:
     ArtifactName: 'drop' 
     publishLocation: 'Container'
     
- - script: |
-   cd ..
-   dir *.* /s
-  displayName: 'Dir workspace'
-  continueOnError: true
-  condition: succeededOrFailed()
-
- - script: |
-   cd ..
-   set
-  displayName: 'Environment variables'
-  continueOnError: true
-  condition: succeededOrFailed()
+- task: CmdLine@2
+  displayName: 'Display environment'
+  inputs:
+    script: |
+      cd ..
+      dir /s *.*
+      set
