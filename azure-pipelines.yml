@@ -32,7 +32,7 @@ steps:
   inputs:
     command: test
     projects: |
-     Tests/**/*Tests.csproj
+     **/*Tests.csproj
     arguments: '-v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
     
 
