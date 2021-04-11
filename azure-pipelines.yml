@@ -33,10 +33,10 @@ steps:
     command: test
     projects: |
      **/*Tests.csproj
-    arguments: '--logger trx -v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
+    arguments: '--logger trx --results-directory $(Build.ArtifactStagingDirectory) -v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
     
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    ArtifactName: 'drop' 
     publishLocation: 'Container'
