@@ -37,7 +37,7 @@ steps:
     
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Agent.TempDirectory)'
+    #PathtoPublish: '$(Agent.TempDirectory)'
     ArtifactName: 'drop' 
     publishLocation: 'Container'
     
