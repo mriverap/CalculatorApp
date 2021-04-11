@@ -35,26 +35,26 @@ steps:
      **/*Tests.csproj
     arguments: '-v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
     
+ - task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: '*.trx'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    
  - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'XUnit'
         testResultsFiles: '**/*.trx'
-        searchFolder: '$(Agent.TempDirectory)'
+        searchFolder: '$(Build.ArtifactStagingDirectory)'
         testRunTitle: 'XUnit Tests'
         
  - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'VSTest'
         testResultsFiles: '**/*.trx'
-        searchFolder: '$(Agent.TempDirectory)'
+        searchFolder: '$(Build.ArtifactStagingDirectory)'
         testRunTitle: 'VSTest Tests'
         
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Agent.TempDirectory)'
-    Contents: '*.trx'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    
 - task: PublishBuildArtifacts@1
   inputs:
     #PathtoPublish: '$(Agent.TempDirectory)'
