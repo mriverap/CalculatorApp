@@ -40,20 +40,6 @@ steps:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: '*.trx'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'XUnit'
-    testResultsFiles: '**/*.trx'
-    searchFolder: '$(Build.ArtifactStagingDirectory)'
-    testRunTitle: 'XUnit Tests'
-        
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'VSTest'
-    testResultsFiles: '**/*.trx'
-    searchFolder: '$(Build.ArtifactStagingDirectory)'
-    testRunTitle: 'VSTest Tests'
         
 - task: PublishBuildArtifacts@1
   inputs:
