@@ -21,6 +21,11 @@ namespace CalculatorApp
             return a * b;
         }
 
+        public float Multiply(float a, float b, float c)
+        {
+            return a * b * c;
+        }
+
         public float Divide(float a, float b)
         {
             return (float) a / b;
