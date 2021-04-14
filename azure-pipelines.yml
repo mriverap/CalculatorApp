@@ -33,7 +33,7 @@ steps:
     command: test
     projects: |
      **/*Tests.csproj
-    arguments: '-v n  -f netcoreapp3.1 --configuration release --no-build --no-restore'
+    arguments: '-v n  -f netcoreapp3.1 --configuration release --no-build --no-restore --collect "Code coverage"'
     
 - task: CopyFiles@2
   inputs:
